@@ -11,3 +11,8 @@
 *.lai
 *.la
 *.a
+
+#Ignore editor generated files
+*.swp
+*.gch
+*~
