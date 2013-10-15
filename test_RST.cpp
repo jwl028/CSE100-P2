@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
   vector<countint>::iterator ven = v.end();
   for(; vit != ven; ++vit) {
     // all these inserts are unique, so should return true
-    if(! r.insert(*vit).second ) {
+    if(! r.insert(*vit) ) {
       cout << endl << "Incorrect return value when inserting " << *vit << endl;
       return -1;
     }
