@@ -26,6 +26,7 @@ public:
   BSTNode<Data>* right;
   BSTNode<Data>* parent;
   Data const data;   // the const Data in this node.
+  int info;   // priority in this node
 
   /** Return the successor of this BSTNode in a BST, or 0 if none.
    ** PRECONDITION: this BSTNode is a node in a BST.
