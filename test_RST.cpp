@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
   
   //  r.inorder();
 
-  /* How many comparisons did it take to do the inserts, avg per key? 
+  /* How many comparisons did it take to do the inserts, avg per key?*/ 
   double compsperkey =  countint::getcount() / (double) N;
   cout << "That took " << compsperkey << " average comparisons per key, ";
   if(compsperkey <= maxcompsperkey) cout << "OK. " << endl;
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
     cout << "way too many!" << endl;
     return -1;
   }
-*/
+
   /* Test iterator; should iterate the entire tree inorder */
   cout << "Checking traversal using iterator...";
   vit = v.begin();
