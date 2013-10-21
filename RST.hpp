@@ -11,7 +11,7 @@ class RST : public BST<Data> {
 public:
 
   virtual bool insert(const Data& item) {
-    BSTNode<Data>* currNode = root, *prevNode = 0;
+    BSTNode<Data>* currNode = BST<Data>::root, *prevNode = 0;
     while(currNode !=0){
       prevNode = currNode;
       //Go to left child node if inserted node is smaller
@@ -30,7 +30,7 @@ public:
     //Inserts node as root if empty
     if(BST<Data>::root == 0) {
       BST<Data>::root = new BSTNode<Data>(item);
-      srand(time(NULL));
+    srand(time(NULL));
       BST<Data>::root->info = rand();
       BST<Data>::isize++;
       return true;
@@ -39,10 +39,11 @@ public:
     else if (prevNode->data < item) {
       prevNode->right = new BSTNode<Data>(item);
       prevNode->right->parent = prevNode;
-      srand(time(NULL));
       prevNode->right->info = rand();
+      std::cout << prevNode->right->info << std::endl;
       if(prevNode->right->info > prevNode->info) {
         rotateLeft(prevNode);
+      std::cout << "Inst" << std::endl;
       }
       BST<Data>::isize++;
       return true;
@@ -51,8 +52,8 @@ public:
     else {
       prevNode->left = new BSTNode<Data>(item);
       prevNode->left->parent = prevNode;
-      srand(time(NULL));
       prevNode->left->info = rand();
+      //std::cout << rand() << std::endl;
       if(prevNode->left->info > prevNode->info) {
         rotateRight(prevNode);
       }
@@ -61,10 +62,11 @@ public:
     }
   }
 
-  BSTNode<Data>* rotateLeft(BSTNode<Data>* node) {
-    if(node->right->info > node->info) {
+  void rotateLeft(BSTNode<Data>* node) {
+  std::cout << "Left" << std::endl;
       BSTNode<Data>* nodeParent = node->parent;
       BSTNode<Data>* nodeRight= node->right;
+    if(node->right->info > node->info) {
     //  BSTNode<Data>* nodeLeft= node->left;
       node->parent = nodeRight;
       node->parent->left = node;
@@ -85,11 +87,11 @@ public:
     rotateLeft(nodeParent);
   }
 
-  BSTNode<Data>* rotateRight(BSTNode<Data>* node) {
-    if(node->left->info > node->info) {
+  void rotateRight(BSTNode<Data>* node) {
       BSTNode<Data>* nodeParent = node->parent;
-     // BSTNode<Data>* nodeRight= node->right;
       BSTNode<Data>* nodeLeft= node->left;
+    if(node->left->info > node->info) {
+     // BSTNode<Data>* nodeRight= node->right;
       node->parent = nodeLeft;
       node->parent->right = node;
       node->left = nodeLeft->right;
