@@ -28,11 +28,11 @@ public:
       }
     }
     //Inserts node as root if empty
-    if(root == 0) {
-      root = new BSTNode<Data>(item);
+    if(BST<Data>::root == 0) {
+      BST<Data>::root = new BSTNode<Data>(item);
       srand(time(NULL));
-      root->info = rand();
-      isize++;
+      BST<Data>::root->info = rand();
+      BST<Data>::isize++;
       return true;
     }
     //Inserts node as right child if larger
@@ -44,7 +44,7 @@ public:
       if(prevNode->right->info > prevNode->info) {
         rotateLeft(prevNode);
       }
-      isize++;
+      BST<Data>::isize++;
       return true;
     }
     //Inserts node as left child if smaller
@@ -56,7 +56,7 @@ public:
       if(prevNode->left->info > prevNode->info) {
         rotateRight(prevNode);
       }
-      isize++;
+      BST<Data>::isize++;
       return true;
     }
   }
@@ -65,7 +65,7 @@ public:
     if(node->right->info > node->info) {
       BSTNode<Data>* nodeParent = node->parent;
       BSTNode<Data>* nodeRight= node->right;
-      BSTNode<Data>* nodeLeft= node->left;
+    //  BSTNode<Data>* nodeLeft= node->left;
       node->parent = nodeRight;
       node->parent->left = node;
       node->right = nodeRight->left;
@@ -88,7 +88,7 @@ public:
   BSTNode<Data>* rotateRight(BSTNode<Data>* node) {
     if(node->left->info > node->info) {
       BSTNode<Data>* nodeParent = node->parent;
-      BSTNode<Data>* nodeRight= node->right;
+     // BSTNode<Data>* nodeRight= node->right;
       BSTNode<Data>* nodeLeft= node->left;
       node->parent = nodeLeft;
       node->parent->right = node;
