@@ -64,6 +64,7 @@ public:
 
   void rotateLeft(BSTNode<Data>* node) {
   std::cout << "Left" << std::endl;
+  if(node->parent != 0) {
       BSTNode<Data>* nodeParent = node->parent;
       BSTNode<Data>* nodeRight= node->right;
     if(node->right->info > node->info) {
@@ -86,8 +87,10 @@ public:
     }
     rotateLeft(nodeParent);
   }
+  }
 
   void rotateRight(BSTNode<Data>* node) {
+    if(node->parent !=0){
       BSTNode<Data>* nodeParent = node->parent;
       BSTNode<Data>* nodeLeft= node->left;
     if(node->left->info > node->info) {
@@ -109,6 +112,7 @@ public:
     else {
     }
     rotateRight(nodeParent);
+  }
   }
 
 };

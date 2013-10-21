@@ -10,9 +10,9 @@ CXXFLAGS= -std=c++11 -g -Wall
 #include debugging symbols in executable
 LDFLAGS= -g	
 
-benchtree: benchtree.o countint.o
+#benchtree: benchtree.o countint.o
 
-benchtree.o: RST.hpp BST.hpp BSTNode.hpp BSTIterator.hpp
+#benchtree.o: RST.hpp BST.hpp BSTNode.hpp BSTIterator.hpp
 
 countint.o: countint.hpp
 
