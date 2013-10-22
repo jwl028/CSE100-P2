@@ -1,5 +1,12 @@
-//Jimmy Li
-//PID:A96026254
+//---------------------------------------------------------------------
+//Filename:	RST.hpp
+//Author:	Jimmy Li
+//PID:		A96026254
+//Date:		10/19/2013
+//Rev-Date:	10/21/2013
+//Description:	Contains the properties of a randomized search tree 
+//		data structure.
+//---------------------------------------------------------------------
 
 #ifndef RST_HPP
 #define RST_HPP
@@ -12,7 +19,15 @@ template <typename Data>
 class RST : public BST<Data> {
 
 public:
-  //RST insert method
+
+  //---------------------------------------------------------------------
+  //insert()
+  //
+  //Input: const Data& item
+  //Output: boolean
+  //Description: Inserts a node with the inputted data into the RST.
+  //---------------------------------------------------------------------
+
   virtual bool insert(const Data& item) {
     BSTNode<Data>* currNode = BST<Data>::root, *prevNode = 0;
     while(currNode !=0){
@@ -34,6 +49,7 @@ public:
     if(BST<Data>::root == 0) {
       BST<Data>::root = new BSTNode<Data>(item);
       //std::cout << "Inst Root" << std::endl;
+      //Random seed for random priorities each run
       srand(time(NULL));
       BST<Data>::root->info = rand();
       //std::cout << item << std::endl;
@@ -73,9 +89,19 @@ public:
     }
   }
   
-  //Rotate left method
+  //---------------------------------------------------------------------
+  //rotateLeft()
+  //
+  //Input: BSTNode<Data>* node 
+  //Output: None 
+  //Description: Recursively performs AVL left rotation on node if right 
+  //             child's priority is less than the node's priority. Calls
+  //             rotateRight if right child's priority is greater.
+  //---------------------------------------------------------------------
+
   void rotateLeft(BSTNode<Data>* node) {
-  //std::cout << "Left" << std::endl;
+ // std::cout << "Left" << std::endl;
+    //Rotate left if right child has higher priority
     if(node->right->info > node->info) {
       node->right->parent = node->parent;
       node->parent = node->right;
@@ -85,27 +111,36 @@ public:
         node->right->parent = node;
       }
       if(node->parent->parent != 0 ){
+        //If node is right child, check if left rotation is needed
         if(node->parent->parent->data < node->data) {
           node->parent->parent->right = node->parent;
+          rotateLeft(node->parent->parent);
         }
         else {
+        //If node is left child, check if right rotation is needed
           node->parent->parent->left = node->parent;
+          rotateRight(node->parent->parent);
         }
-        rotateLeft(node->parent->parent);
       }
       else {
         BST<Data>::root = node->parent;
       }
     }
-    //Rotates right if left child has higher priority
-    if(node->left != 0 && node->left->info > node->info) {
-      rotateRight(node);
-    }
   }
 
-  //Rotate right method
+  //---------------------------------------------------------------------
+  //rotateRight()
+  //
+  //Input: BSTNode<Data>* node 
+  //Output: None 
+  //Description: Recursively performs AVL right rotation on node if left 
+  //             child's priority is less than the node's priority. Calls
+  //             rotateRight if right child's priority is greater.
+  //---------------------------------------------------------------------
+
   void rotateRight(BSTNode<Data>* node) {
-  std::cout << "Right" << std::endl;
+  //std::cout << "Right" << std::endl;
+    //Rotate right if left child has higher priority
     if(node->left->info > node->info) {
       node->left->parent = node->parent;
       node->parent = node->left;
@@ -115,21 +150,20 @@ public:
         node->left->parent = node;
       }
       if(node->parent->parent !=0){
+        //If node is right child, check if left rotation is needed
         if(node->parent->parent->data < node->data) {
-          node->parent->parent->right = node->parent;
+          node->parent->parent->right= node->parent;
+          rotateLeft(node->parent->parent);
         }
         else {
-          node->parent->parent->left = node->parent;
+        //If node is left child, check if right rotation is needed
+          node->parent->parent->left= node->parent;
+          rotateRight(node->parent->parent);
         } 
-        rotateRight(node->parent->parent);
       }
       else {
         BST<Data>::root = node->parent;
       }
-    }
-    //Rotates left if right child has higher priority
-    if(node->right != 0 && node->right->info > node->info) {
-      rotateLeft(node);
     }
   }
 
