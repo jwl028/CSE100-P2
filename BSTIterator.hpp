@@ -1,9 +1,11 @@
-/*
-Name: Jimmy Li
-PID: A960626254
-Assignment 1
-CSE100
-*/
+//---------------------------------------------------------------------
+//Filename:	BSTIterator.hpp
+//Author:	Jimmy Li
+//PID:		A96026254
+//Date:		10/19/2013
+//Rev-Date:	10/21/2013
+//Description:  Iterator for BST	
+//---------------------------------------------------------------------
 
 #ifndef BSTITERATOR_HPP
 #define BSTITERATOR_HPP

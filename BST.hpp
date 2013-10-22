@@ -1,10 +1,12 @@
-/*
-Name: Jimmy Li
-PID: A960626254
-Assignment 1
-CSE100
-*/
-
+//---------------------------------------------------------------------
+//Filename:	BST.hpp
+//Author:	Jimmy Li
+//PID:		A96026254
+//Date:		10/19/2013
+//Rev-Date:	10/21/2013
+//Description:	Contains the properties of a binary search tree 
+//		data structure.
+//---------------------------------------------------------------------
 #ifndef BST_HPP
 #define BST_HPP
 #include "BSTNode.hpp"
