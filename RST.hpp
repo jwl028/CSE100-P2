@@ -50,7 +50,7 @@ public:
       BST<Data>::root = new BSTNode<Data>(item);
       //std::cout << "Inst Root" << std::endl;
       //Random seed for random priorities each run
-      srand(time(NULL));
+      //srand(time(NULL));
       BST<Data>::root->info = rand();
       //std::cout << item << std::endl;
       //std::cout << BST<Data>::root->info << std::endl;

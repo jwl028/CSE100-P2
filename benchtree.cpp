@@ -1,3 +1,12 @@
+//---------------------------------------------------------------------
+//Filename:	benchtree.cpp
+//Author:	Jimmy Li
+//PID:		A96026254
+//Date:		10/19/2013
+//Rev-Date:	10/21/2013
+//Description:	Computes the number of average comparisons various data 
+//		structures take for finding elements.
+//---------------------------------------------------------------------
 #include "RST.hpp"
 #include "countint.hpp"
 #include <cmath>
@@ -18,9 +27,8 @@ int main(int argc, char** argv) {
   int numRuns;
   int maxN;
   int N;
+  //Check that there are 4 arguments
   if (argc == 5) {
-    //std::istream num1(argv[3]);
-    //std::istream num2(argv[4]);
     //Selected data structure
     if(strcmp(argv[1],"bst")==0 || strcmp(argv[1],"rst")==0 || strcmp(argv[1],"set")==0) {
       dataStruc = argv[1];
@@ -37,13 +45,23 @@ int main(int argc, char** argv) {
       cout << "Please enter either 'sorted' or 'shuffled' for the second argument" << endl;
       return (0);
     } 
-    //Maximum tree size 
+    //Maximum tree size (has to be greater than or equal to 1)
+    for(unsigned int a = 0; a < strlen(argv[3]); a++) {
+      if(isdigit(argv[3][a]) == 0) {
+        cout << "Please enter an integer greater than or equal to 1 for the third argument" << endl;
+        return(0);
+      }
+    }
     maxSize = atoi(argv[3]);
+    if (maxSize == 0) {
+      cout << "Please enter an integer greater than or equal to 1 for the third argument" << endl;
+      return(0);
+    }
     maxN = log(maxSize + 1) / log(2);
-    //# times calculations are run 
+    //# times calculations are run (has to be greater than or equal to 1)
     for(unsigned int a = 0; a < strlen(argv[4]); a++) {
       if(isdigit(argv[4][a]) == 0) {
-        cout << "Please enter an integer from 1 to infinite for the fourth argument" << endl;
+        cout << "Please enter an integer greater than or equal to 1 for the fourth argument" << endl;
         return(0);
       }
     }
@@ -53,6 +71,7 @@ int main(int argc, char** argv) {
       return(0);
     }
   }
+  //Exits if 4 arguments are not supplied
   else {
     cout << "Please enter 4 arguments" << endl;
     return(0);
@@ -107,7 +126,7 @@ int main(int argc, char** argv) {
       avgcomps = avgcomps/(double)numRuns;
       sumsqcomp = sumsqcomp/(double)numRuns;   
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
-      cout << N << "\t" << avgcomps << "\t" << stdev << endl;
+      cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
 
     //Insert and find on BST data structure.
@@ -139,7 +158,7 @@ int main(int argc, char** argv) {
       avgcomps = avgcomps/(double)numRuns;
       sumsqcomp = sumsqcomp/(double)numRuns;   
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
-      cout << N << "\t" << avgcomps << "\t" << stdev << endl;
+      cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
   
     //Insert and find on set data structure.
@@ -170,7 +189,7 @@ int main(int argc, char** argv) {
       avgcomps = avgcomps/(double)numRuns;
       sumsqcomp = sumsqcomp/(double)numRuns;   
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
-      cout << N << "\t" << avgcomps << "\t" << stdev << endl;
+      cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
   } 
 }
