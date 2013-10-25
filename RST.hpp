@@ -6,7 +6,7 @@
 //Rev-Date:	10/21/2013
 //Description:	Contains the properties of a randomized search tree 
 //		data structure.
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 
 #ifndef RST_HPP
 #define RST_HPP
