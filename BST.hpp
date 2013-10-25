@@ -95,7 +95,8 @@ public:
    *  the last node in the BST if not found.
    *  Note: This function should use only the '<' operator when comparing
    *  Data items.
-   */ // TODO
+   */
+  // TODO
   iterator find(const Data& item) const {
     BSTNode<Data>* tempNode = root;
     //Iterates through left and right children until match is found and
