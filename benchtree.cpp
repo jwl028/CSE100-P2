@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
   cout << "# Data structure: " << dataStruc << endl;
   cout << "# Data: " << order << endl;
   cout << "# N is powers of 2, minus 1, from 1 to " << maxSize << endl;
-  cout << "# Averaging over " << numRuns << "for each N" << endl;
+  cout << "# Averaging over " << numRuns << " runs for each N" << endl;
   cout << "#" << endl;
   cout << "# N\tavgcomps\tstdev" << endl;
 
@@ -110,21 +110,29 @@ int main(int argc, char** argv) {
         }
         if(order == "shuffled") {
           random_shuffle(v.begin(),v.end());
-        }  
+        }
+        //Insert elements into the tree  
         vector<countint>::iterator vit = v.begin();
         vector<countint>::iterator ven = v.end();
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.insert(*vit);
         }
+        //Clear count
         countint::clearcount();
+        //Find elements in tree
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.find(*vit);
         }
+        //Compute the average comparison for one run
         avgcomps += countint::getcount()/(double)N;
+        //Compute the average squared comparison for one run
         sumsqcomp += pow((countint::getcount()/(double)N),2.0);   
       }
+      //Compute the average comparison for multiple runs
       avgcomps = avgcomps/(double)numRuns;
+      //Compute the average squared comparison for multiple run
       sumsqcomp = sumsqcomp/(double)numRuns;   
+      //Compute standard deviation
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
       cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
@@ -142,21 +150,29 @@ int main(int argc, char** argv) {
         if(order == "shuffled") {
           random_shuffle(v.begin(),v.end());
         }  
+        //Insert elements into the tree  
         vector<countint>::iterator vit = v.begin();
         vector<countint>::iterator ven = v.end();
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.insert(*vit);
         }
+        //Clear count
         countint::clearcount();
+        //Find elements in tree
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.find(*vit);
         }  
+        //Compute the average comparison for one run
         avgcomps += countint::getcount()/(double)N;
+        //Compute the average squared comparison for one run
         sumsqcomp += pow((countint::getcount()/(double)N),2.0);   
 
       }
+      //Compute the average comparison for multiple runs
       avgcomps = avgcomps/(double)numRuns;
+      //Compute the average squared comparison for multiple run
       sumsqcomp = sumsqcomp/(double)numRuns;   
+      //Compute standard deviation
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
       cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
@@ -174,20 +190,28 @@ int main(int argc, char** argv) {
         if(order == "shuffled") {
           random_shuffle(v.begin(),v.end());
         }  
+        //Insert elements into the tree  
         vector<countint>::iterator vit = v.begin();
         vector<countint>::iterator ven = v.end();
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.insert(*vit);
         }
+        //Clear count
         countint::clearcount();
+        //Find elements in tree
         for(vit = v.begin(); vit != ven; ++vit) {
           tree.find(*vit);
         }  
+        //Compute the average comparison for one run
         avgcomps += countint::getcount()/(double)N;
+        //Compute the average squared comparison for one run
         sumsqcomp += pow((countint::getcount()/(double)N),2.0);   
       }
+      //Compute the average comparison for multiple runs
       avgcomps = avgcomps/(double)numRuns;
+      //Compute the average squared comparison for multiple run
       sumsqcomp = sumsqcomp/(double)numRuns;   
+      //Compute standard deviation
       stdev = sqrt(abs(pow(avgcomps,2.0)-sumsqcomp));
       cout << N << "\t" << avgcomps << "\t\t" << stdev << endl;
     }
